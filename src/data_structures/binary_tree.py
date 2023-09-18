@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Generic, List, Optional, TypeVar
+from typing import Generic, List, Optional, Set, TypeVar
 
 
 T = TypeVar('T')
@@ -183,3 +183,83 @@ class BinaryTree(Generic[T]):
                 [2, 4, 3, 6, 8, 7, 5]
         """
         return self._post_order_traversal(self._root)
+
+    def breadth_first_search(self, log_visit_step: bool = False) -> List[T]:
+        """ Breadth first search of tree.
+
+            Example:
+                >>> tree = BinaryTree()
+                >>> tree.insert(5)
+                >>> tree.insert(3)
+                >>> tree.insert(7)
+                >>> tree.insert(2)
+                >>> tree.insert(4)
+                >>> tree.insert(6)
+                >>> tree.insert(8)
+                >>> tree.breadth_first_search()
+                [5, 3, 7, 2, 4, 6, 8]
+            
+            Args:
+                log_visit_step (bool): Whether or not to log the current node being visited.
+            
+            Returns:
+                List[T]: Breadth first search of tree.
+        """
+        visited: Set[BinaryTree.Node] = set()
+        queue: List[BinaryTree.Node] = []
+
+        queue.append(self._root)
+        while len(queue) > 0:
+            current_location = queue.pop(0)
+            visited.add(current_location)
+
+            if log_visit_step:
+                print('Currently At: ', current_location)
+
+            if current_location.left is not None and current_location.left not in visited and current_location.left not in queue:
+                queue.append(current_location.left)
+            
+            if current_location.right is not None and current_location.right not in visited and current_location.right not in queue:
+                queue.append(current_location.right)
+
+        return [node.value for node in visited]
+
+    def depth_first_search(self, log_visit_step: bool = False) -> List[T]:
+        """ Depth first search of tree.
+
+            Example:
+                >>> tree = BinaryTree()
+                >>> tree.insert(5)
+                >>> tree.insert(3)
+                >>> tree.insert(7)
+                >>> tree.insert(2)
+                >>> tree.insert(4)
+                >>> tree.insert(6)
+                >>> tree.insert(8)
+                >>> tree.depth_first_search()
+                [5, 3, 7, 2, 4, 6, 8]
+
+            Args:
+                log_visit_step (bool): Whether or not to log the current node being visited.
+                
+            Returns:
+                List[T]: Depth first search of tree.
+        """
+        visited: Set[BinaryTree.Node] = set()
+        stack: List[BinaryTree.Node] = []
+
+        stack.append(self._root)
+        while len(stack) > 0:
+            current_location = stack.pop(-1)
+            visited.add(current_location)
+
+            if log_visit_step:
+                print('Currently At: ', current_location)
+
+            if current_location.left is not None and current_location.left not in visited and current_location.left not in stack:
+                stack.append(current_location.left)
+            
+            if current_location.right is not None and current_location.right not in visited and current_location.right not in stack:
+                stack.append(current_location.right)
+
+        return [node.value for node in visited]
