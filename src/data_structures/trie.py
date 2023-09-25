@@ -26,6 +26,11 @@ class Trie:
 
         Attributes:
             _nodes (Dict[str, dict]): The nodes in the trie.
+        
+        Methods:
+            insert: Inserts a word into the trie.
+            search: Searches for a word in the trie.
+            starts_with: Searches for a prefix in the trie.
     """
 
     def __init__(self):
@@ -62,7 +67,7 @@ class Trie:
 
         return current_mapping.is_word
 
-    def startsWith(self, prefix: str) -> bool:
+    def starts_with(self, prefix: str) -> bool:
         """ Searches for a prefix in the trie.
         
             Args:
