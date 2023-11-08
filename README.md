@@ -36,9 +36,9 @@ There are a handful of custom implementations of common algorithms. The list of 
 
 This is a repository that is actively being developed. See below for the planned upcoming work.
 
-1. Add `Trie` data structure class.
-2. Add `Queue` data structure class.
-3. Add `MinHeap` data structure class.
-4. Add `MaxHeap` data structure class.
-5. Add `DoublyLinkedList` data structure class.
-6. Add unit tests.
+1. Add `MinHeap` data structure class.
+2. Add `MaxHeap` data structure class.
+3. Add `DoublyLinkedList` data structure class.
+4. Add unit tests.
+5. Add `Dijkstras` algorithm.
+6. Add `A*` algorithm.
